@@ -222,12 +222,12 @@ const css = `
 // ─── Data ─────────────────────────────────────────────────────────────────────
 
 const WORK = [
-  { id: "kpmg1", name: "KPMG", period: "Mar 2011–Jun 2013" },
-  { id: "acra", name: "ACRA", period: "Jun 2013–Sep 2017" },
-  { id: "ihis", name: "IHiS / MOHH", period: "Oct 2017–Nov 2019" },
-  { id: "kpmg2", name: "KPMG", period: "Nov 2019–May 2022" },
-  { id: "moht", name: "MOHT", period: "May 2022–Mar 2024" },
-  { id: "temus", name: "Temus (est. by Temasek)", period: "Mar 2024–NOW" },
+  { name: "KPMG", period: "Mar 2011–Jun 2013" },
+  { name: "ACRA", period: "Jun 2013–Sep 2017" },
+  { name: "IHiS / MOHH", period: "Oct 2017–Nov 2019" },
+  { name: "KPMG", period: "Nov 2019–May 2022" },
+  { name: "MOHT", period: "May 2022–Mar 2024" },
+  { name: "Temus (est. by Temasek)", period: "Mar 2024–NOW" },
 ];
 
 const PROJECTS = [
@@ -300,10 +300,10 @@ Be professional, direct and precise. Max 3–4 sentences per answer unless asked
 // ─── Component ────────────────────────────────────────────────────────────────
 
 export default function AskCK() {
-  const [messages, setMessages] = useState([]);
-  const [input, setInput] = useState("");
-  const [loading, setLoading] = useState(false);
-  const chatRef = useRef(null);
+  const [messages, setMessages] = useState<{role: string; content: string}[]>([]);
+  const [input, setInput] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
+  const chatRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (chatRef.current) {
@@ -311,7 +311,7 @@ export default function AskCK() {
     }
   }, [messages, loading]);
 
-  const send = async (text) => {
+  const send = async (text?: string) => {
     const question = text || input.trim();
     if (!question || loading) return;
     setInput("");
@@ -334,7 +334,7 @@ export default function AskCK() {
     setLoading(false);
   };
 
-  const onKey = (e) => {
+  const onKey = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); send(); }
   };
 
@@ -411,7 +411,7 @@ export default function AskCK() {
           <p className="section-label">work · 14+ years</p>
           <div className="work-list">
             {WORK.map((w) => (
-              <div key={w.id} className="work-item">
+              <div key={w.name} className="work-item">
                 <span className="work-name">{w.name}</span>
                 <span className="work-period">{w.period}</span>
               </div>
