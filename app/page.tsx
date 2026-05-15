@@ -64,17 +64,31 @@ const css = `
 
   /* ── Hero ── */
   .hero { margin-bottom: 52px; }
+  .hero-inner { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; }
+  .hero-text { flex: 1; }
+  .hero-photo { flex-shrink: 0; width: 200px; }
+  .hero-img { width: 100%; height: auto; border-radius: 4px; display: block; }
   .byline { font-size: 11px; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 16px; }
   .hero-headline {
     font-family: var(--font-display);
-    font-size: clamp(36px, 8vw, 58px);
+    font-size: clamp(32px, 7vw, 52px);
     font-weight: 400;
     line-height: 1.12;
     letter-spacing: -0.01em;
     margin-bottom: 20px;
   }
   .hero-headline em { font-style: italic; color: var(--accent); }
-  .hero-sub { font-size: 13px; color: var(--muted); max-width: 420px; line-height: 1.7; }
+  .hero-sub { font-size: 13px; color: var(--muted); max-width: 380px; line-height: 1.7; }
+
+  /* ── Certifications ── */
+  .cert-list { display: flex; flex-direction: column; gap: 0; }
+  .cert-item {
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding: 11px 0; border-bottom: 1px solid var(--border);
+  }
+  .cert-item:last-child { border-bottom: none; }
+  .cert-name { font-size: 13px; }
+  .cert-short { font-size: 11px; color: var(--muted); }
 
   /* ── Chat box ── */
   .chat-wrap { margin-bottom: 60px; }
@@ -271,7 +285,13 @@ const PROJECTS = [
 const STACK = [
   "AWS", "Microsoft Azure", "Azure Databricks",
   "Dynamics 365", "MS Project", "JIRA", "Confluence",
-  "PMP", "CSM", "ITIL", "Pingat Bakti Masyarakat",
+];
+
+const CERTS = [
+  { name: "Pingat Bakti Masyarakat (Public Service Medal)", short: "PBM" },
+  { name: "Project Management Professional", short: "PMP" },
+  { name: "Certified Scrum Master", short: "CSM" },
+  { name: "ITIL Foundation", short: "ITIL" },
 ];
 
 const CHIPS = [
@@ -351,16 +371,23 @@ export default function AskCK() {
 
         {/* Hero */}
         <section className="hero">
-          <p className="byline">ck · singapore</p>
-          <h1 className="hero-headline">
-            Programme<br />
-            delivery,<br />
-            <em>done right.</em>
-          </h1>
-          <p className="hero-sub">
-            14+ years delivering public sector digital transformation
-            across health, government, and consulting. Ask me anything.
-          </p>
+          <div className="hero-inner">
+            <div className="hero-text">
+              <p className="byline">Chris King · Singapore</p>
+              <h1 className="hero-headline">
+                Programme<br />
+                delivery,<br />
+                <em>done right.</em>
+              </h1>
+              <p className="hero-sub">
+                14+ years delivering public sector digital transformation
+                across health, government, and consulting. Ask me anything.
+              </p>
+            </div>
+            <div className="hero-photo">
+              <img src="/ck-photo.png" alt="Chris King" className="hero-img" />
+            </div>
+          </div>
         </section>
 
         {/* Chat */}
@@ -444,6 +471,21 @@ export default function AskCK() {
           <p className="section-label">stack</p>
           <div className="stack-grid">
             {STACK.map((s) => <span key={s} className="stack-item">{s}</span>)}
+          </div>
+        </section>
+
+        <hr className="rule" />
+
+        {/* Certifications & Awards */}
+        <section>
+          <p className="section-label">certifications & awards</p>
+          <div className="cert-list">
+            {CERTS.map((c) => (
+              <div key={c.short} className="cert-item">
+                <span className="cert-name">{c.name}</span>
+                <span className="cert-short">{c.short}</span>
+              </div>
+            ))}
           </div>
         </section>
 
