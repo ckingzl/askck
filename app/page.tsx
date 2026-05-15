@@ -375,9 +375,9 @@ export default function AskCK() {
             <div className="hero-text">
               <p className="byline">Chris King · Singapore</p>
               <h1 className="hero-headline">
-                Programme<br />
-                delivery,<br />
-                <em>done right.</em>
+                Delivering<br />
+                what matters,<br />
+                <em>on time.</em>
               </h1>
               <p className="hero-sub">
                 14+ years delivering public sector digital transformation
