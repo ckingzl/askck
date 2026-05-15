@@ -373,7 +373,7 @@ export default function AskCK() {
         <section className="hero">
           <div className="hero-inner">
             <div className="hero-text">
-              <p className="byline">Chris King · Singapore</p>
+              <p className="byline">Chris King (CK) · Singapore</p>
               <h1 className="hero-headline">
                 Delivering<br />
                 what matters,<br />
